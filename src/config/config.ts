@@ -14,7 +14,8 @@ const environmentSchema = Joi.object({
   ORIGIN: Joi.string().default('http://localhost:8080'),
   USE_SSL: Joi.boolean().default(false),
   TOKEN_SIGNING_ALG: Joi.string().default('RS256'),
-  AUTH0_ACCESS_TOKEN: Joi.string().required()
+  AUTH0_ACCESS_TOKEN: Joi.string().required(),
+  AUTH0_GRANT_TYPE: Joi.string().required()
 }).unknown();
 
 const { error, value } = environmentSchema.validate(process.env);
@@ -31,7 +32,8 @@ export const config = {
     domain: value.AUTH0_DOMAIN,
     issuer: value.AUTH0_ISSUER,
     tokenSigningAlg: value.TOKEN_SIGNING_ALG,
-    accessToken: value.AUTH0_ACCESS_TOKEN
+    accessToken: value.AUTH0_ACCESS_TOKEN,
+    grantType: value.AUTH0_GRANT_TYPE
   },
   corsOrigin: value.ORIGIN,
   domain: value.DOMAIN,

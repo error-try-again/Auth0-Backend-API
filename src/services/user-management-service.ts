@@ -1,10 +1,11 @@
-import { getManagementToken } from './token-service';
+import { getManagementAccessToken } from './token-service';
 import axios, { isAxiosError } from 'axios';
 
 export async function makeAuth0ManagementApiRequest(method: string, url: string, data: unknown, scope: string) {
   // Retrieve the management token from the token service to make the request
-  const managementToken = await getManagementToken();
+  const accessToken = await getManagementAccessToken();
 
+  // Data is required for patch requests/updating user data
   if (method === 'patch' && !data) {
     throw new Error('Missing Content: Data is required for this request');
   }
@@ -13,17 +14,15 @@ export async function makeAuth0ManagementApiRequest(method: string, url: string,
 
     // Initialize the headers object containing the management token and the content type of the request
     const headers = {
-      Authorization: `Bearer ${managementToken}`, 'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json',
       scope
     };
 
     // Combine the initial values into a single config
     const config = { data, headers, method, url };
 
-    // Perform the request to the Auth0 Management API
+    // Perform the request to the Auth0 API
     const response = await axios(config);
-
-    // console.error('response.data', response.data)
 
     return response.data;
   } catch (error) {

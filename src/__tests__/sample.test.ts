@@ -44,22 +44,22 @@ describe('API Endpoints', () => {
     });
 
     describe('Protected Routes', () => {
-      it('Protected endpoint list_users should return an array of all users with a 200 status code', async () => {
-        const { status, body} = await request(app)
-        .get('/list_users')
-        .set('Authorization', `Bearer ${accessToken}`);
-        expect(body).toMatchObject({ data: expect.any(Array) });
-        expect(status).toBe(200);
-      });
-    });
-
-    describe('Protected Routes', () => {
       it('Protected endpoint protected_health should return json with status ok when authenticated', async () => {
         const { status, body } = await request(app)
         .get('/protected_health')
         .set('Authorization', `Bearer ${accessToken}`);
         expect(status).toBe(200);
         expect(body).toEqual({ status: 'ok' });
+      });
+    });
+
+    describe('Protected Routes', () => {
+      it('Protected endpoint list_users should return an array of all users with a 200 status code', async () => {
+        const { status, body} = await request(app)
+        .get('/list_users')
+        .set('Authorization', `Bearer ${accessToken}`);
+        expect(body).toMatchObject({ data: expect.any(Array) });
+        expect(status).toBe(200);
       });
     });
 
@@ -82,6 +82,7 @@ describe('API Endpoints', () => {
       });
     });
 
+
     // Will return non-existent user error if the user ID is not found
     describe('Protected Routes', () => {
       it('Protected endpoint update_account should return a 200 status code on valid data', async () => {
@@ -89,7 +90,7 @@ describe('API Endpoints', () => {
         .post('/update_account')
         .set('Authorization', `Bearer ${accessToken}`)
         .send({
-          userId: 'auth0|63f636f4e87141d9bb6e7cd6',
+          userId: 'google-oauth2|101883098026301126189',
           data: { email: 'yane.clarke1@gmail.com' }
         });
         expect(status).toBe(200);
