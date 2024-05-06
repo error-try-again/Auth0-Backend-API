@@ -3,7 +3,7 @@ import axios, { isAxiosError } from 'axios';
 
 export async function makeAuth0ManagementApiRequest(method: string, url: string, data: unknown, scope: string) {
   // Retrieve the management token from the token service to make the request
-  const accessToken = await getManagementAccessToken();
+  const managementToken = await getManagementAccessToken();
 
   // Data is required for patch requests/updating user data
   if (method === 'patch' && !data) {
@@ -14,7 +14,7 @@ export async function makeAuth0ManagementApiRequest(method: string, url: string,
 
     // Initialize the headers object containing the management token and the content type of the request
     const headers = {
-      Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json',
+      Authorization: `Bearer ${managementToken}`, 'Content-Type': 'application/json',
       scope
     };
 
