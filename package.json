@@ -1,11 +1,12 @@
 {
+
   "name": "auth0-backend",
   "version": "1.0.0",
   "description": "Auth0 Backend",
   "scripts": {
     "coverage": "jest --coverage",
     "main": "npx ts-node src/server.ts",
-    "test": "NODE_ENV=test DOTENV_CONFIG_PATH=.env jest --setupFiles=dotenv/config --coverage --coverageDirectory='coverage'"
+    "test": "DOTENV_CONFIG_PATH=.env jest --setupFiles=dotenv/config --coverage --coverageDirectory='coverage'"
   },
   "dependencies": {
     "axios": "^1.6.8",

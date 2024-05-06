@@ -40,7 +40,7 @@ export const config = {
   corsOrigin: value.ORIGIN,
   domain: value.DOMAIN,
   port: value.PORT,
-  ssl: value.USE_SSL === 'true',
+  ssl: value.USE_SSL,
   jsonBodyLimit: '1mb',
   trustProxy: 1
 };
