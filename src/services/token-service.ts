@@ -12,7 +12,7 @@ async function fetchNewAccessToken(): Promise<string> {
 
   // Initialize the data object that will be sent to Auth0 to request the management token
   const managementData = {
-    audience: config.auth0.audience,
+    audience: config.auth0.managementAudience,
     client_id: config.auth0.clientId,
     client_secret: config.auth0.clientSecret,
     grant_type: config.auth0.grantType

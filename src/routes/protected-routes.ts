@@ -2,8 +2,9 @@ import express from 'express';
 import { validateRequest } from '../validators/request-validators';
 import { asyncErrorHandler } from '../middleware/async-error-handler';
 import { userActionSchema } from '../schema/update-account-schema';
-import { deleteUser, listUsers } from '../operations/delete-user';
+import { deleteUser } from '../operations/delete-user';
 import { updateUser } from '../operations/update-user';
+import { listUsers } from '../operations/list-users';
 
 export const protectedRoutes = express.Router();
 

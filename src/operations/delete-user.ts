@@ -6,9 +6,3 @@ export const deleteUser = (userId: string) => {
   const url = `https://${config.auth0.domain}/api/v2/users/${userId}`;
   return makeAuth0ManagementApiRequest('delete', url, {}, 'delete:users');
 };
-
-export const listUsers = () => {
-  // Initialize the URL to call the Auth0 API to list all users
-  const url = `https://${config.auth0.domain}/api/v2/users`;
-  return makeAuth0ManagementApiRequest('get', url, {}, 'read:users');
-};

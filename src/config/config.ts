@@ -4,18 +4,19 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const environmentSchema = Joi.object({
+  AUTH0_ACCESS_TOKEN: Joi.string().required(),
   AUTH0_AUDIENCE: Joi.string().required(),
   AUTH0_CLIENT_ID: Joi.string().required(),
   AUTH0_CLIENT_SECRET: Joi.string().required(),
   AUTH0_DOMAIN: Joi.string().required(),
+  AUTH0_GRANT_TYPE: Joi.string().required(),
   AUTH0_ISSUER: Joi.string().required(),
+  AUTH0_MANAGEMENT_AUDIENCE: Joi.string().required(),
   DOMAIN: Joi.string().required(),
-  PORT: Joi.number().default(8080),
   ORIGIN: Joi.string().default('http://localhost:8080'),
-  USE_SSL: Joi.boolean().default(false),
+  PORT: Joi.number().default(8080),
   TOKEN_SIGNING_ALG: Joi.string().default('RS256'),
-  AUTH0_ACCESS_TOKEN: Joi.string().required(),
-  AUTH0_GRANT_TYPE: Joi.string().required()
+  USE_SSL: Joi.boolean().default(false)
 }).unknown();
 
 const { error, value } = environmentSchema.validate(process.env);
@@ -33,7 +34,8 @@ export const config = {
     issuer: value.AUTH0_ISSUER,
     tokenSigningAlg: value.TOKEN_SIGNING_ALG,
     accessToken: value.AUTH0_ACCESS_TOKEN,
-    grantType: value.AUTH0_GRANT_TYPE
+    grantType: value.AUTH0_GRANT_TYPE,
+    managementAudience: value.AUTH0_MANAGEMENT_AUDIENCE
   },
   corsOrigin: value.ORIGIN,
   domain: value.DOMAIN,

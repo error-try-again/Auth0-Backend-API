@@ -63,6 +63,16 @@ describe('API Endpoints', () => {
       });
     });
 
+
+    describe('Protected Routes', () => {
+      it('Protected endpoint protected_health should return a 401 status code when not authenticated/token invalid', async () => {
+        const { status } = await request(app)
+        .get('/protected_health')
+        .set('Authorization', `Bearer ${badAccessToken}`);
+        expect(status).toBe(401);
+      });
+    });
+
     describe('Protected Routes', () => {
       it('Protected endpoint update_account should return a 422 status code on invalid data', async () => {
         const { status } = await request(app)
