@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// AUTH0_ACCESS_TOKEN is optional for testing
 const environmentSchema = Joi.object({
-  AUTH0_ACCESS_TOKEN: Joi.string().required(),
+  AUTH0_ACCESS_TOKEN: Joi.string(),
   AUTH0_AUDIENCE: Joi.string().required(),
   AUTH0_CLIENT_ID: Joi.string().required(),
   AUTH0_CLIENT_SECRET: Joi.string().required(),
