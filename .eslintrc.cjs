@@ -6,8 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:unicorn/all',
     'plugin:@typescript-eslint/recommended',
-    'plugin:import/recommended',
-    ''
+    'plugin:import/recommended'
   ],
   ignorePatterns: [
     'node_modules/',

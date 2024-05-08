@@ -1,7 +1,12 @@
 import { getManagementAccessToken } from './token-service';
 import axios, { isAxiosError } from 'axios';
 
-export async function makeAuth0ManagementApiRequest(method: string, url: string, data: unknown, scope: string) {
+export async function makeAuth0ManagementApiRequest(
+  method: string,
+  url: string,
+  data: unknown,
+  scope: string
+) {
   // Retrieve the management token from the token service to make the request
   const managementToken = await getManagementAccessToken();
 
@@ -11,10 +16,10 @@ export async function makeAuth0ManagementApiRequest(method: string, url: string,
   }
 
   try {
-
     // Initialize the headers object containing the management token and the content type of the request
     const headers = {
-      Authorization: `Bearer ${managementToken}`, 'Content-Type': 'application/json',
+      Authorization: `Bearer ${managementToken}`,
+      'Content-Type': 'application/json',
       scope
     };
 
@@ -26,10 +31,8 @@ export async function makeAuth0ManagementApiRequest(method: string, url: string,
 
     return response.data;
   } catch (error) {
-
     // If the error is an Axios error, throw an error with the status and data
     if (isAxiosError(error)) {
-
       let errorData = error.response?.data;
 
       // Handle the error data as an object and throw a meaningful error message
@@ -37,7 +40,9 @@ export async function makeAuth0ManagementApiRequest(method: string, url: string,
         errorData = JSON.stringify(errorData);
         throw new Error(`Auth0 API error: ${errorData} - ${error?.message}`);
       } else {
-        throw new TypeError(`Auth0 API error: No data object returned - ${error?.message}`);
+        throw new TypeError(
+          `Auth0 API error: No data object returned - ${error?.message}`
+        );
       }
     }
     throw new Error('Unexpected error');

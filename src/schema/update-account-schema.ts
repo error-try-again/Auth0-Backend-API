@@ -5,5 +5,7 @@ export const userActionSchema = Joi.object({
     email: Joi.string().email()
   }).optional(),
   // Alphanumerical, greater than 12, includes | - .
-  userId: Joi.string().pattern(/^[\d.A-Za-z|-]{13,}$/).required()
+  userId: Joi.string()
+    .pattern(/^[\d.A-Za-z|-]{13,}$/)
+    .required()
 });

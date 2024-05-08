@@ -7,7 +7,9 @@ import { config } from './config/config';
 const startServer = () => {
   if (config.ssl) {
     const sslOptions = {
-      cert: fs.readFileSync(`/etc/letsencrypt/live/${config.domain}/fullchain.pem`),
+      cert: fs.readFileSync(
+        `/etc/letsencrypt/live/${config.domain}/fullchain.pem`
+      ),
       key: fs.readFileSync(`/etc/letsencrypt/live/${config.domain}/privkey.pem`)
     };
     https.createServer(sslOptions, app).listen(config.port, () => {

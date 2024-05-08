@@ -17,9 +17,12 @@ app.use(helmet());
 app.set('trust proxy', config.trustProxy);
 
 // Initialize the CORS middleware
-app.use(cors({
-  optionsSuccessStatus: 200, origin: config.corsOrigin
-}));
+app.use(
+  cors({
+    optionsSuccessStatus: 200,
+    origin: config.corsOrigin
+  })
+);
 
 // Initialize the JSON body parser
 app.use(express.json({ limit: config.jsonBodyLimit }));

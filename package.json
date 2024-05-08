@@ -1,5 +1,4 @@
 {
-
   "name": "auth0-backend",
   "version": "1.0.0",
   "description": "Auth0 Backend",
@@ -7,6 +6,26 @@
     "coverage": "jest --coverage",
     "main": "npx ts-node src/server.ts",
     "test": "DOTENV_CONFIG_PATH=.env jest --setupFiles=dotenv/config --coverage --coverageDirectory='coverage'"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "endOfLine": "auto",
+    "tabWidth": 2,
+    "useTabs": false,
+    "printWidth": 80,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "insertPragma": false,
+    "embeddedLanguageFormatting": "auto",
+    "htmlWhitespaceSensitivity": "css",
+    "singleAttributePerLine": true
   },
   "dependencies": {
     "axios": "^1.6.8",

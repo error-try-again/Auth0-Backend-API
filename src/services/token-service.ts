@@ -6,7 +6,6 @@ import { config } from '../config/config';
 let cachedAccessToken: { token: string; expiry: Date } | undefined;
 
 async function fetchNewAccessToken(): Promise<string> {
-
   // Initialize the URL to call the Auth0 API
   const url = `https://${config.auth0.domain}/oauth/token`;
 
@@ -35,7 +34,8 @@ async function fetchNewAccessToken(): Promise<string> {
 
   // Store the token and expiry date in the cachedToken object for future use
   cachedAccessToken = {
-    expiry, token: response.data.access_token
+    expiry,
+    token: response.data.access_token
   };
 
   return cachedAccessToken.token;
