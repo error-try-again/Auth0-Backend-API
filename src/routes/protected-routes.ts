@@ -9,7 +9,6 @@ export const protectedRoutes = express.Router();
 
 protectedRoutes.post(
   '/delete_account',
-  validateRequest(userActionSchema),
   asyncErrorHandler(async (request, response) => {
     const userId = request.auth?.payload?.sub;
     if (userId) {
@@ -37,8 +36,8 @@ protectedRoutes.post(
 
 protectedRoutes.get('/protected_health', async (request, response) => {
   const userId = request.auth?.payload?.sub;
+  console.error(userId);
   if (userId) {
-    console.log(userId);
     response.status(200).json({ status: 'ok' });
   }
 });
